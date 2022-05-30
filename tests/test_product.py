@@ -3,11 +3,11 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 
-page = "/test"
+PAGE = "/test"
 
 
 def test_items_exist_product_page(browser, base_url):
-    browser.get(base_url + page)
+    browser.get(base_url + PAGE)
     try:
         wait = WebDriverWait(browser, 3)
         wait.until(EC.visibility_of_element_located(ObjectsClass.TEXT_VALUE))
