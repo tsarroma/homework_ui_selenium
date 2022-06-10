@@ -6,8 +6,7 @@ from selenium.common.exceptions import TimeoutException
 
 class BasePage:
     CURRENCY_FORM = (By.CSS_SELECTOR, "#form-currency")
- #   CURRENCY_BTN = (By.XPATH, "/html/body/nav/div/div[1]/form/div/button")
-    CURRENCY_BTN = (By.CSS_SELECTOR, "#cart-total")
+    CART_CURRENCY_ICON = (By.CSS_SELECTOR, "#cart-total")
     ALERT_SUCCESS = (By.CSS_SELECTOR, ".alert-success")
     EUR_BTN = (By.CSS_SELECTOR, "[name='EUR']")
     GBP_BTN = (By.CSS_SELECTOR, "[name='GBP']")
@@ -53,4 +52,4 @@ class BasePage:
         self._click(locator)
 
     def get_currency_text(self):
-        return self._element_visibility(self.CURRENCY_BTN).text
+        return self._element_visibility(self.CART_CURRENCY_ICON).text
