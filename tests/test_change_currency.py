@@ -5,8 +5,13 @@ from page_objects.base_page import BasePage
 
 @pytest.mark.parametrize("currency, currency_icon", [("EUR", "€"), ("GBP", "£"), ("USD", "$")])
 def test_change_currency(browser, base_url, currency, currency_icon):
+    icon = {}
     base_page = BasePage(browser, base_url)
     base_page.change_currency(currency)
     currency_text = base_page.get_currency_text()
-    assert currency_text == currency_icon + "  "
-
+    if icon == "EUR":
+        assert currency_text == "0 item(s) - 0.00" + currency_icon
+    elif icon == "GBP":
+        assert currency_text == "0 item(s) -" + currency_icon + "0.00"
+    elif icon == "USD":
+        assert currency_text == "0 item(s) - 0.00" + currency_icon
