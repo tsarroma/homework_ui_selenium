@@ -5,6 +5,7 @@ PAGE = "/laptop-notebook"
 
 def test_items_exist_catalog_page(browser, base_url):
     product_page = ProductPage(browser, base_url)
+    product_page.open_product_page()
     product_page._element_visibility(ProductPage.LEFT_MENU)
     product_page._element_visibility(ProductPage.BTN_GRID_VIEW)
     product_page._element_visibility(ProductPage.NAV)

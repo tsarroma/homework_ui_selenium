@@ -4,6 +4,8 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.common.exceptions import TimeoutException
 
 
+
+
 class BasePage:
     CURRENCY_FORM = (By.CSS_SELECTOR, "#form-currency")
     CART_CURRENCY_ICON = (By.CSS_SELECTOR, "#cart-total")
@@ -16,8 +18,10 @@ class BasePage:
         TIME_WAIT = 5
         self.browser = browser
         self.base_url = base_url
-        self.browser.get(self.base_url)
         self.wait = WebDriverWait(self.browser, TIME_WAIT)
+
+    def open_page(self, url):
+        self.browser.get(self.base_url + url)
 
     def _element_visibility(self, locator):
         wait = self.wait

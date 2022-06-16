@@ -1,9 +1,8 @@
 from selenium.webdriver.common.by import By
-
+from selenium.webdriver.support.wait import WebDriverWait
 from page_objects.base_page import BasePage
 
-PAGE = "/admin"
-
+ADMIN_PAGE_URL = "/admin"
 
 class AdminPage(BasePage):
     PANEL_BODY = (By.CSS_SELECTOR, ".panel-body")
@@ -25,8 +24,13 @@ class AdminPage(BasePage):
     DELETE_BTN = (By.CSS_SELECTOR, ".fa-trash-o")
 
     def __init__(self, browser, base_url):
-        super().__init__(browser, base_url)
-        self.browser.get(self.base_url + PAGE)
+        TIME_WAIT = 6
+        self.browser = browser
+        self.base_url = base_url
+        self.wait = WebDriverWait(self.browser, TIME_WAIT)
+
+    def open_admin_page(self):
+        self.open_page(ADMIN_PAGE_URL)
 
     def login_admin(self, username, password):
         self._send_keys(self.INPUT_USERNAME, username)

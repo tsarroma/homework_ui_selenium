@@ -7,6 +7,7 @@ from page_objects.base_page import BasePage
 def test_change_currency(browser, base_url, currency, currency_icon):
     icon = {}
     base_page = BasePage(browser, base_url)
+    base_page.open_page("/")
     base_page.change_currency(currency)
     currency_text = base_page.get_currency_text()
     if icon == "EUR":

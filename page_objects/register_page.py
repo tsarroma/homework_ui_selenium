@@ -1,8 +1,8 @@
 from selenium.webdriver.common.by import By
-
+from selenium.webdriver.support.wait import WebDriverWait
 from page_objects.base_page import BasePage
 
-PAGE = "/index.php?route=account/register"
+REGISTER_PAGE_URL = "/index.php?route=account/register"
 
 
 class RegisterPage(BasePage):
@@ -18,8 +18,13 @@ class RegisterPage(BasePage):
     CONTINUE_BTN = (By.CSS_SELECTOR, ".btn-primary")
 
     def __init__(self, browser, base_url):
-        super().__init__(browser, base_url)
-        self.browser.get(self.base_url + PAGE)
+        TIME_WAIT = 6
+        self.browser = browser
+        self.base_url = base_url
+        self.wait = WebDriverWait(self.browser, TIME_WAIT)
+
+    def open_register_page(self):
+        self.open_page(REGISTER_PAGE_URL)
 
     def firstname_input(self, firstname):
         self._send_keys(self.FIRSTNAME_INPUT, firstname)

@@ -1,8 +1,8 @@
 from selenium.webdriver.common.by import By
-
+from selenium.webdriver.support.wait import WebDriverWait
 from page_objects.base_page import BasePage
 
-PAGE = "/laptop-notebook"
+CATALOG_PAGE_URL = "/laptop-notebook"
 
 
 class CatalogPage(BasePage):
@@ -13,5 +13,10 @@ class CatalogPage(BasePage):
     SUMMA = (By.CSS_SELECTOR, "#cart-total")
 
     def __init__(self, browser, base_url):
-        super().__init__(browser, base_url)
-        self.browser.get(self.base_url + PAGE)
+        TIME_WAIT = 6
+        self.browser = browser
+        self.base_url = base_url
+        self.wait = WebDriverWait(self.browser, TIME_WAIT)
+
+    def open_catalog_page(self):
+        self.open_page(CATALOG_PAGE_URL)

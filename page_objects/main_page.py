@@ -1,8 +1,8 @@
 from selenium.webdriver.common.by import By
-
+from selenium.webdriver.support.wait import WebDriverWait
 from page_objects.base_page import BasePage
 
-PAGE = "/index.php?route=common/home"
+MAIN_PAGE_URL = "/index.php?route=common/home"
 
 
 class MainPage(BasePage):
@@ -13,5 +13,10 @@ class MainPage(BasePage):
     CAROUSEL = (By.CSS_SELECTOR, "#carousel0")
 
     def __init__(self, browser, base_url):
-        super().__init__(browser, base_url)
-        self.browser.get(self.base_url + PAGE)
+        TIME_WAIT = 6
+        self.browser = browser
+        self.base_url = base_url
+        self.wait = WebDriverWait(self.browser, TIME_WAIT)
+
+    def open_main_page(self):
+        self.open_page(MAIN_PAGE_URL)
