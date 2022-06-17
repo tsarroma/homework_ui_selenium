@@ -25,12 +25,6 @@ def browser(request):
     logger.addHandler(file_handler)
     logger.setLevel(level=log_level)
 
-#    logger = logging.getLogger(request.node.name)
-#    file_handler = logging.FileHandler(f"logs/{request.node.name}.log")
-#    file_handler.setFormatter(logging.Formatter('%(name)s - %(levelname)s - %(message)s'))
-#    logger.addHandler(file_handler)
-#    logger.setLevel(level=log_level)
-
     logger.info("===> Test started at {}".format(datetime.datetime.now()))
 
     if browser == "chrome":
