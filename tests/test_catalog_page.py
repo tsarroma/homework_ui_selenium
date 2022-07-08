@@ -1,6 +1,10 @@
+import allure
+
 from page_objects.catalog_page import CatalogPage
 
-
+@allure.feature('Catalog page')
+@allure.story('Validation')
+@allure.title('Validation of page elements')
 def test_items_exist_catalog_page(browser, base_url):
     catalog_page = CatalogPage(browser, base_url)
     catalog_page.open_catalog_page()

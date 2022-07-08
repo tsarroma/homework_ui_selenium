@@ -1,3 +1,5 @@
+import allure
+
 from selenium.webdriver.common.by import By
 from page_objects.base_page import BasePage
 
@@ -11,5 +13,6 @@ class CatalogPage(BasePage):
     SEARCH = (By.CSS_SELECTOR, ".form-control")
     SUMMA = (By.CSS_SELECTOR, "#cart-total")
 
+    @allure.step("Open catalog page")
     def open_catalog_page(self):
         self._open_page(CATALOG_PAGE_URL)

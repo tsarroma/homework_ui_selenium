@@ -1,6 +1,10 @@
+import allure
+
 from page_objects.register_page import RegisterPage
 
-
+@allure.feature('Register page')
+@allure.story('Validation')
+@allure.title('Validation of page elements')
 def test_items_exist_register_page(browser, base_url):
     register_page = RegisterPage(browser, base_url)
     register_page.open_register_page()

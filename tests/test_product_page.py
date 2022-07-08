@@ -1,9 +1,13 @@
+import allure
+
 from page_objects.product_page import ProductPage
 
 PAGE = "/laptop-notebook"
 
-
-def test_items_exist_catalog_page(browser, base_url):
+@allure.feature('Product page')
+@allure.story('Validation')
+@allure.title('Validation of page elements')
+def test_items_exist_product_page(browser, base_url):
     product_page = ProductPage(browser, base_url)
     product_page.open_product_page()
     product_page._element_visibility(ProductPage.LEFT_MENU)

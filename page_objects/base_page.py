@@ -1,3 +1,5 @@
+import allure
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
@@ -23,12 +25,12 @@ class BasePage:
         self.browser.get(self.base_url + url)
 
     def _element_visibility(self, locator):
-        self.logger.info("Check if element {} is present".format(locator))
+        self.logger.info(f"Check if element is present {locator}")
         wait = self.wait
         try:
             return wait.until(EC.visibility_of_element_located(locator))
         except TimeoutException:
-            raise AssertionError("Didn't wait for the visibility of the element:".format(locator))
+            raise AssertionError(f"Didn't wait for the visibility of the element: {locator}")
 
     def _click(self, locator):
         self.logger.info("Clicking element: {}".format(locator))
@@ -40,13 +42,16 @@ class BasePage:
         element = self._element_visibility(locator)
         element.send_keys(keys)
 
+    @allure.step("Switch to alert accept")
     def switch_to_alert_accept(self):
         self.logger.info("Confirmed Alert")
         self.browser.switch_to.alert.accept()
 
+    @allure.step("Find allert success")
     def find_alert_success(self):
         self._element_visibility(self.ALERT_SUCCESS)
 
+    @allure.step("Change currency")
     def change_currency(self, currency):
         locator = {}
         if currency == "EUR":
@@ -61,6 +66,7 @@ class BasePage:
         self._click(locator)
         self.browser.refresh()
 
+    @allure.step("Get currency text")
     def get_currency_text(self):
         self.logger.info("Get currency {}".format(self._element_visibility(self.CART_CURRENCY_ICON).text))
         return self._element_visibility(self.CART_CURRENCY_ICON).text

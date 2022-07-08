@@ -1,7 +1,12 @@
+import allure
+
 from page_objects.register_page import RegisterPage
 
 USER = {"firstname": "test", "lastname": "test", "email": "test@email.ru", "telephone": "123456", "password": "test"}
 
+@allure.feature('Register page')
+@allure.story('Registration')
+@allure.title('User registration')
 def test_register_new_user(browser, base_url):
     register_page = RegisterPage(browser, base_url)
     register_page.open_register_page()
